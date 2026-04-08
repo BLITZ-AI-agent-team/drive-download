@@ -49,6 +49,92 @@ Claude Code でこう話しかけるだけ:
 https://drive.google.com/drive/u/0/folders/XXXXX
 ```
 
+---
+
+## Claude Code を使わない場合（ターミナルで実行）
+
+### セットアップ
+
+1. **Git と Python をインストール**（まだの場合）
+   - Git: https://git-scm.com/downloads
+   - Python: https://www.python.org/downloads/ （3.10以上）
+
+2. **ターミナルを開いて以下を順番に実行**
+
+```bash
+# ホームフォルダに移動（ここにツールが入ります）
+cd ~
+
+# ツールをダウンロード
+git clone https://github.com/BLITZ-AI-agent-team/drive-download.git
+
+# 必要なライブラリをインストール
+cd drive-download
+pip install google-api-python-client google-auth
+```
+
+3. **`service_account.json` を配置**
+
+別途共有された `service_account.json` を `drive-download` フォルダの中に置いてください。
+
+```
+Finder/エクスプローラーで:
+  drive-download/           ← このフォルダの中に
+    service_account.json    ← このファイルを置く
+    src/
+    README.md
+```
+
+### ダウンロードの実行方法
+
+#### 1. Google Drive の URL を取得する
+
+ダウンロードしたいフォルダを Google Drive で開き、ブラウザのアドレスバーから URL をコピーします。
+
+```
+こういうURLになっているはず:
+https://drive.google.com/drive/u/0/folders/1Lr2Yy7I4X44q4gOp_XXXXX
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+                                           この部分がフォルダID
+```
+
+#### 2. ターミナルで実行
+
+```bash
+cd ~/drive-download
+python -m src.module7.main "ここにコピーしたURLを貼り付け"
+```
+
+例:
+```bash
+python -m src.module7.main "https://drive.google.com/drive/u/0/folders/1Lr2Yy7I4X44q4gOp_XXXXX"
+```
+
+#### 3. ダウンロード先
+
+ファイルは自動的に以下のフォルダに保存されます:
+
+```
+~/drive-download/downloads/フォルダ名/
+```
+
+例えば「INV_FESL」というフォルダをDLした場合:
+```
+~/drive-download/downloads/INV_FESL/
+  ├── サイド/
+  │   ├── 動画1.MP4
+  │   └── 動画2.MP4
+  ├── メイン/
+  │   └── 動画3.MP4
+  └── テロップ/
+      └── テロップ01.psd
+```
+
+Google Drive 上のフォルダ構造がそのまま再現されます。
+指定やフォルダ作成は不要で、自動的にこの場所に整理されます。
+
+---
+
 ## 初回ダウンロード時の注意
 
 ダウンロードしたいフォルダ/ファイルを、サービスアカウントに共有する必要があります:
