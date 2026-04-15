@@ -1,8 +1,14 @@
 .env
+.env.local
 service_account.json
 *.pyc
 __pycache__/
 .venv/
 downloads/
 logs/
+temp_videos/
+temp_*.wav
+temp_*.json
+models/
 .DS_Store
+Thumbs.db
