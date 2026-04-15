@@ -12,3 +12,5 @@ temp_*.json
 models/
 .DS_Store
 Thumbs.db
+.agent-trace/
+.workflow_state.json
